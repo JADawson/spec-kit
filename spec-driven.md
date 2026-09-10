@@ -78,7 +78,7 @@ The SDD methodology is significantly enhanced through three powerful commands th
 
 This command transforms a simple feature description (the user-prompt) into a complete, structured specification with automatic repository management:
 
-1. **Automatic Feature Numbering**: Scans existing specs to determine the next feature number (e.g., 001, 002, 003)
+1. **Automatic Feature Numbering**: Scans existing specs to determine the next feature number (e.g., 001, 002, 003, …, 1000 — expands beyond 3 digits automatically)
 2. **Branch Creation**: Generates a semantic branch name from your description and creates it automatically
 3. **Template-Based Generation**: Copies and customizes the feature specification template with your requirements
 4. **Directory Structure**: Creates the proper `specs/[branch-name]/` structure for all related documents
@@ -195,6 +195,7 @@ The templates include comprehensive checklists that act as "unit tests" for the 
 
 ```markdown
 ### Requirement Completeness
+
 - [ ] No [NEEDS CLARIFICATION] markers remain
 - [ ] Requirements are testable and unambiguous
 - [ ] Success criteria are measurable
@@ -208,10 +209,14 @@ The implementation plan template enforces architectural principles through phase
 
 ```markdown
 ### Phase -1: Pre-Implementation Gates
+
 #### Simplicity Gate (Article VII)
+
 - [ ] Using ≤3 projects?
 - [ ] No future-proofing?
+
 #### Anti-Abstraction Gate (Article VIII)
+
 - [ ] Using framework directly?
 - [ ] Single model representation?
 ```
@@ -313,6 +318,12 @@ No implementation code shall be written before:
 
 This completely inverts traditional AI code generation. Instead of generating code and hoping it works, the LLM must first generate comprehensive tests that define behavior, get them approved, and only then generate implementation.
 
+#### Articles IV, V & VI: Project-Defined Governance
+
+Articles IV, V, and VI are intentionally defined by each project's constitution rather than prescribed by Spec Kit. The constitution template provides placeholder slots and example concerns such as integration testing, observability, versioning, and breaking changes, but teams replace those placeholders with the principles that match their system and organization.
+
+This keeps the nine-article structure stable while allowing each project to encode its own non-negotiable standards. For one project, Article IV might govern security and access boundaries; for another, it might define integration test requirements. The `/speckit.analyze` command evaluates the concrete constitution in the project, so these project-defined articles participate in compliance checks just like the built-in examples.
+
 #### Articles VII & VIII: Simplicity and Anti-Abstraction
 
 These paired articles combat over-engineering:
@@ -347,15 +358,19 @@ The implementation plan template operationalizes these articles through concrete
 
 ```markdown
 ### Phase -1: Pre-Implementation Gates
+
 #### Simplicity Gate (Article VII)
+
 - [ ] Using ≤3 projects?
 - [ ] No future-proofing?
 
 #### Anti-Abstraction Gate (Article VIII)
+
 - [ ] Using framework directly?
 - [ ] Single model representation?
 
 #### Integration-First Gate (Article IX)
+
 - [ ] Contracts defined?
 - [ ] Contract tests written?
 ```
@@ -401,4 +416,3 @@ By embedding these principles into the specification and planning process, SDD e
 This isn't about replacing developers or automating creativity. It's about amplifying human capability by automating mechanical translation. It's about creating a tight feedback loop where specifications, research, and code evolve together, each iteration bringing deeper understanding and better alignment between intent and implementation.
 
 Software development needs better tools for maintaining alignment between intent and implementation. SDD provides the methodology for achieving this alignment through executable specifications that generate code rather than merely guiding it.
-
